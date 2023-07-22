@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>수질 검사</title>
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+   <style> .input {
+      display: block;
+      margin-bottom: 20px;
+    }
+    .input-row {
+      display: block;
+      margin-bottom: 20px;
+    }
+    
+    .input-row input {
+      background-color: lightgray;
+    }
+
+    .input-row label {
+      margin-right: 20px;
+    }
+
+    button {
+      background-color: navy;
+      color: white;
+      font-family: 'Black Han Sans', sans-serif;
+    }
+    body {
+            font-family: 'Black Han Sans', sans-serif;
+            min-height: 60vh;
+            max-width: 600px;
+            background-color: papayawhip; 
+            margin: 0 auto;
+        }
+  </style>
+</head>
+<body>
+  <p id="description" style="display: none; color: rgb(0, 28, 110);"></p>
+    <div class="input-row"> 
+         <label for="a">기준치: 0.01mg/L &nbsp; 납:</label>
+        <input type="number" id="a">
+    </div>
+    <div class="input-row">
+        <label for="b">기준치: 1.5mg/L &nbsp;불소:</label>
+        <input type="number" id="b">
+        
+    </div>
+    <div class="input-row">
+        <label for="c">기준치: 10mg/L &nbsp;질산성질소:</label>
+        <input type="number" id="c">
+    </div>
+    <div class="input-row">
+        <label for="d">기준치: 0.02mg/L &nbsp;다이아지논:</label>
+        <input type="number" id="d">
+    </div>
+    <div class="input-row">
+        <label for="e">기준치: 0.1mg/L &nbsp;트리클로로에탄:</label>
+        <input type="number" id="e">
+    </div>
+    <div class="input-row">
+        <label for="f">기준치: 0.01mg/L &nbsp;벤젠:</label>
+        <input type="number" id="f">
+    </div>
+    <div class="input-row">
+        <label for="g">기준치: 0.05mg/L &nbsp;크로뮴:</label>
+        <input type="number" id="g">
+    </div>
+  <button onclick="checkResults()">결과보기</button>
+  <p id="result"></p>
+  <script>
+    function checkResults() {
+      var A = parseFloat(document.getElementById("a").value);
+      var B = parseFloat(document.getElementById("b").value);
+      var C = parseFloat(document.getElementById("c").value);
+      var D = parseFloat(document.getElementById("d").value);
+      var E = parseFloat(document.getElementById("e").value);
+      var F = parseFloat(document.getElementById("f").value);
+      var G = parseFloat(document.getElementById("g").value);
+
+      var danger = false;
+      var description = "";
+      if (A > 0.01) {
+        danger = true;
+        var Ae1 = "납";
+        var Ae2 = "인체에 해로운점 : 구토, 두통, 경련, 마비, 식욕부진, 관절 통증, 빈혈, 기억력 감퇴, 뇌 손상, 정신 장애";
+        description += Ae1 + ": " + Ae2 + "\n";
+    }
+
+      if (B > 1.5) {
+        danger = true;
+        var Be1 = "불소";
+        var Be2 = "인체에 해로운점 : 피부 트러블, 심혈관계 질환, 조산, 불임, 갑상선 질환, 치아, 관절, 뇌신경 문제, 복통, 매스꺼움, 구토, 발작, 근육통, 과도한 침 분비";
+        description += Be1 + ": " + Be2 + "\n";
+    }
+
+      if (C > 10) {
+        danger = true;
+        var Ce1 = "질산성질소";
+        var Ce2 = "인체에 해로운점 : 갓난아기에게 청색증 유발";
+        description += Ce1 + ": " + Ce2 + "\n";
+    }
+
+      if (D > 0.02) {
+        danger = true;
+        var De1 = "다이아지논";
+        var De2 = "인체에 해로운점 : 섭취시 혈류에 유입, 두통, 현기증, 무기력증, 불안감";
+        description += De1 + ": " + De2 + "\n";
+    }
+
+      if (E > 0.1) {
+        danger = true;
+        var Ee1 = "트리클로로에탄";
+        var Ee2 = "인체에 해로운점 :구토, 복통, 일시적 의식불명, 중추신경 억제, 마취작용";
+        description += Ee1 + ": " + Ee2 + "\n";
+    }
+      if (F > 0.01) {
+        danger = true;
+        var Fe1 = "벤젠";
+        var Fe2 = "인체에 해로운점 : 마취작용이 있음 ->공기 속 최대허용농도 100ppm, 백혈구 감소, 빈혈, 식욕부진, 신경쇠약, 건망증";
+        description += Fe1 + ": " + Fe2 + "\n";
+    }
+
+      if (G > 0.05) {
+        danger = true;
+        var Ge1 = "크로늄";
+        var Ge2 = "인체에 해로운점 : 간장, 신장에 축적, 뼈가 약해짐, 폐 손상, 구토, 설사";
+        description += Ge1 + ": " + Ge2 + "\n";
+    }
+      if (danger) {
+        var xElement = document.getElementById("result");
+        xElement.innerHTML = "<strong>위험한 성분:</strong><br>" + description.replace(/\n/g, "<br>");
+        xElement.style.display = "block";
+      } else {
+        window.location.href = "안전.html"; 
+      }
+
+    }
+  
+  </script>
+
+</body>
+</html>
